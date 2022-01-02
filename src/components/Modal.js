@@ -11,7 +11,6 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
     const [ripiw, setRipiw] = useState([{}]);
 
     useEffect(() => {
-        // gimana cara biar setiap klik beda2
         fetch(`/lagu/${index+1}`)
             .then((res) => res.json())
             .then((data) => setRipiw(data.data.Ripiw));
@@ -38,7 +37,6 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
                 setIsOpen={setModalEditIsOpen}
             />
 
-            {/* perlu diganti biar sesuai sama judul di luarnya */}
             <div class="flex flex-col space-x-10">
                 <div class="flex flex-row kotak bg-sc bg-cover mt-8 ml-8 mb-4"></div>
                 <div class="flex flex-row font-bold text-4xl">

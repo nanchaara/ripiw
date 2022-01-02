@@ -9,7 +9,7 @@ const Kotak = ({ isOpen, setIsOpen, laguKotak, setIndex }) => {
                 {laguKotak.map((item, index) => (
                     <div
                         class="kotak bg-sc bg-cover relative cursor-pointer"
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => handleClick(index)}
                     >
                         <div class="font-semibold text-2xl z-10">
                             {item.Judul}
