@@ -8,7 +8,7 @@ const Kotak = ({ isOpen, setIsOpen, laguKotak, setIndex }) => {
             <div class="flex justify-center flex-row space-x-10">
                 {laguKotak.map((item, index) => (
                     <div
-                        class="kotak bg-sc bg-cover relative cursor-pointer"
+                        class={`kotak bg-${index+1} bg-cover relative cursor-pointer`}
                         onClick={() => handleClick(index)}
                     >
                         <div class="font-semibold text-2xl z-10">

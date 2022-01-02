@@ -9,6 +9,22 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
     const [modalAddIsOpen, setModalAddIsOpen] = useState(false);
     const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
     const [ripiw, setRipiw] = useState([{}]);
+    const [user , setUser] = useState('')
+    const [review, setReview] = useState('')
+    const [rating, setRating] = useState(0)
+
+    const handleOpenEdit = (item) => {
+        console.log('item',item)
+        setUser(item.Username)
+        setReview(item.Ripiw)
+        setModalEditIsOpen(true)   
+    }
+
+    const handleOpenAdd = () => {
+        setUser('')
+        setReview('')
+        setModalAddIsOpen(true)   
+    }
 
     useEffect(() => {
         fetch(`/lagu/${index+1}`)
@@ -31,14 +47,30 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
             <ModalAdd 
                 isOpen={modalAddIsOpen} 
                 setIsOpen={setModalAddIsOpen} 
+                index={index}
+                user={user}
+                review={review}
+                setUser={setUser}
+                setReview={setReview}
+                setRating={setRating}
+                rating={rating}
+                setRipiw={setRipiw}
             />
             <ModalEdit
+                user={user}
+                review={review}
                 isOpen={modalEditIsOpen}
                 setIsOpen={setModalEditIsOpen}
+                index={index}
+                setUser={setUser}
+                setReview={setReview}
+                setRating={setRating}
+                rating={rating}
+                setRipiw={setRipiw}
             />
 
             <div class="flex flex-col space-x-10">
-                <div class="flex flex-row kotak bg-sc bg-cover mt-8 ml-8 mb-4"></div>
+                <div class={`flex flex-row kotak bg-${index+1} bg-cover mt-8 ml-8 mb-4`}></div>
                 <div class="flex flex-row font-bold text-4xl">
                     {laguKotak[index].Judul}
                 </div>
@@ -85,16 +117,20 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
                     ripiw.map((item) => (
                         <div
                             class={`flex flex-col h-48 w-72 rounded-3xl bg-blue-200 m-4 justify-between p-4 cursor-pointer`}
-                            onClick={() => setModalEditIsOpen(true)}
-                            // ${item.Username.includes('nanchaara') && 'cursor-pointer'}`}
-                            // onClick={() => handleClickReview(item.Username)}
-                        >
+                            onClick={() => handleOpenEdit(item)}>
                             <div class="flex flex-row justify-between">
                                 <div class="flex flex-col font-semibold">
                                     {item.Username}
                                 </div>
-                                <div class="flex flex-col">{item.Rating}</div>
-                            </div>
+                                <div class="flex">
+                                    <div class='flex items-center mr-1'>
+                                        <AiFillStar size={20}/>
+                                    </div>
+                                    <div class='flex items-center'>
+                                        {item.Rating}
+                                    </div>
+                                </div>
+                            </div>  
                             <div class="flex flex-row">{item.Ripiw}</div>
                         </div>
                     ))
@@ -103,9 +139,7 @@ const MyModal = ({ isOpen, setIsOpen, laguKotak, index }) => {
                 <div class="flex flex-row mt-4 ml-4 mr-4">
                     <button
                         class="h-12 w-full px-4 font-semibold text-xl text-white rounded-full bg-blue-500 hover:bg-blue-600"
-                        onClick={() => setModalAddIsOpen(true)}
-                        // onClick={() => handleClickButton(lagu.filter(item => item.name === 'nanchaara').ripiw)}
-                    >
+                        onClick={handleOpenAdd}>
                         Add Review
                     </button>
                 </div>

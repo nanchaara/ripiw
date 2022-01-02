@@ -7,8 +7,11 @@ module.exports = {
     },
     extend: {
       backgroundImage: { 
-        'sc': "url('/src/components/cover/sc.jpg')",
-        'omf': "url('/src/components/cover/omf.jpg')",
+        '1': "url('/src/components/cover/1.jpg')",
+        '2': "url('/src/components/cover/2.jpg')",
+        '3': "url('/src/components/cover/3.jpg')",
+        '4': "url('/src/components/cover/4.jpg')",
+        '5': "url('/src/components/cover/5.jpg')",
       },
       width: {
         
