@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Tipe from "./components/Tipe";
+import Kotak from "./components/Kotak";
+import SearchBox from "./components/SearchBox";
+import MyModal from "./components/Modal";
+import { useState, useEffect } from "react";
+import "tailwindcss/tailwind.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [lagu, setLagu] = useState([{}]);
+    const [indexLagu, setIndex] = useState(0);
+
+    useEffect(() => {
+        fetch("/lagu")
+            .then((res) => res.json())
+            .then((data) => setLagu(data.data));
+    }, []);
+
+    console.log(lagu);
+
+    return (
+        <div className="App">
+            <MyModal
+                isOpen={modalIsOpen}
+                setIsOpen={setModalIsOpen}
+                laguKotak={lagu}
+                index={indexLagu}
+            />
+            <Header />
+            <Tipe />
+            <SearchBox />
+            <Kotak 
+            	setIsOpen={setModalIsOpen}
+				laguKotak={lagu} 
+				setIndex={setIndex}
+			/>
+        </div>
+    );
 }
 
 export default App;

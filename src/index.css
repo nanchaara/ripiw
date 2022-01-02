@@ -1,13 +1,21 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply justify-center py-2 px-4 text-2xl;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn-tipe {
+  @apply font-bold text-black hover:text-gray-600;
+}
+
+.kotak {
+  @apply flex flex-col justify-end h-64 w-64 rounded-3xl bg-blue-100 px-4 py-4 font-sans text-white;
+}
+
+.bintang {
+  @apply flex flex-row h-8 w-16 rounded-full bg-blue-400 px-1 py-1 mr-2 place-items-center font-sans text-white hover:bg-blue-500;
 }
